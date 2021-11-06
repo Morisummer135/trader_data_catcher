@@ -9,6 +9,7 @@ from ocr import get_image_by_cords
 from ocr import get_ocr_from_image
 from string_utils import filter_non_digits
 from mouse_utils import mouse_move, mouse_click
+from image_combine import combine_image
 
 class Trader(object):
 
@@ -45,10 +46,14 @@ class Trader(object):
 			mouse_click(*next_page_pointer)
 			time.sleep(0.5)
 
+	def combine_images(self):
+		combine_image(self.cnt)
+
 	def fetch_item_list(self):
 		# self.page_limit = (self.get_page_limit() + 5) / 6
 		self.page_limit = 94
 		self.get_items_info_images()
+		self.combine_images()
 		'''
 		self.extract_items_info()
 		self.save_items_info_to_csv()
